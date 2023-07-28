@@ -3,7 +3,10 @@ import os
 from fastapi import FastAPI
 from mangum import Mangum
 
-from app.user_routes import router as user_router
+try:
+    from user_routes import router as user_router
+except Exception:
+    from app.user_routes import router as user_router
 
 stage = os.environ.get("STAGE", None)
 openapi_prefix = f"/{stage}" if stage else "/"
