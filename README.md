@@ -10,7 +10,7 @@ PoC using AWS SAM, FastAPI, Mangum and Pydantic
 
 ## Quick start
 
-1. Create a virtual environment and activate it:
+1. Create a [virtual environment](https://docs.python.org/3.10/library/venv.html) and activate it
 ```bash
 python -m venv .venv && source .venv/bin/activate
 ```
@@ -23,12 +23,6 @@ make install
 3. Running locally
 ```bash
 make run
-```
-
-## Maintenance
-
-```bash
-make lint && make validate
 ```
 
 ## Build and Deploy
@@ -45,6 +39,14 @@ make deploy
 ```bash
 make tests
 ```
+
+## Maintenance
+
+```bash
+make lint && make validate
+```
+
+> For useful commands, run: `make help`
 
 
 ## TODO
