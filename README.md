@@ -32,8 +32,14 @@ make lint && make validate
 ```
 
 ## Build and Deploy
+1. Building
 ```bash
-make build && make deploy
+make build
+```
+2. Deploy
+```bash
+make deploy
+```
 
 ## Testing
 ```bash

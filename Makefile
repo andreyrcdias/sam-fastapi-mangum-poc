@@ -15,7 +15,7 @@ lint:
 	isort . --profile black
 
 validate:
-	sam validate --debug --lint --profile arcd
+	sam validate --debug --lint
 
 clean:
 	rm -rf .aws-sam/
@@ -24,7 +24,7 @@ run:
 	uvicorn app.app:app --reload
 
 build:
-	sam build --use-container --debug --profile arcd
+	sam build --use-container --debug
 
 deploy:
-	sam deploy --stack-name sam-fastapi-mangum --config-file samconfig.toml --debug --profile arcd
+	sam deploy --stack-name sam-fastapi-mangum --config-file samconfig.toml --debug
