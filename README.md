@@ -1,6 +1,7 @@
 # sam-fastapi-mangum-poc
+PoC using AWS SAM, FastAPI, Mangum, and Pydantic.
 
-PoC using AWS SAM, FastAPI, Mangum and Pydantic
+The benefit is that we use FastAPI to generate our OpenAPI documentation and integrate it with API Gateway.
 
 
 ## Prerequisites
@@ -8,8 +9,8 @@ PoC using AWS SAM, FastAPI, Mangum and Pydantic
 * [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 * [Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-## Quick start
 
+## Quick start
 1. Create a [virtual environment](https://docs.python.org/3.10/library/venv.html) and activate it
 ```bash
 python -m venv .venv && source .venv/bin/activate
@@ -24,6 +25,7 @@ make install
 ```bash
 make run
 ```
+> http://127.0.0.1:8080/docs
 
 ## Build and Deploy
 1. Building
@@ -41,7 +43,6 @@ make tests
 ```
 
 ## Maintenance
-
 ```bash
 make lint && make validate
 ```
