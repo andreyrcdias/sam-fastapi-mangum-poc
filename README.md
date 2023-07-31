@@ -36,6 +36,8 @@ make build
 ```bash
 make deploy
 ```
+> Fetch the API URL from the deploy [Output](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html)
+
 
 ## Testing
 ```bash
