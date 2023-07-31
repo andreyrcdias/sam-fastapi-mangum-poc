@@ -21,11 +21,18 @@ python -m venv .venv && source .venv/bin/activate
 make install
 ```
 
-3. Running locally
+* Running locally with `uvicorn`
 ```bash
 make run
 ```
+
+* Runnig locally with AWS SAM
+```bash
+sam local start-api
+```
+
 > http://127.0.0.1:8080/docs
+
 
 ## Build and Deploy
 1. Building
@@ -36,7 +43,7 @@ make build
 ```bash
 make deploy
 ```
-> Fetch the API URL from the deploy [Output](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html)
+> Fetch the API URL from the deploy [Outputs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html)
 
 
 ## Testing
