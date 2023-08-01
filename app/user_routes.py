@@ -1,6 +1,6 @@
-from typing import Optional
+import random
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 router = APIRouter(tags=["Users"])
@@ -19,27 +19,34 @@ class UpdateUser(CreateUser):
     pass
 
 
-users: list[User] = [User(id=1, name="Tidras")]
+Users = list[User]
+MaybeUser = None | User
 
 
-@router.get("/users", status_code=200, response_model=list[User])
-def list_users() -> list[User]:
-    return users
+fake_db: list[User] = [User(id=1, name="Tidras")]
+
+
+@router.get("/users", status_code=200, response_model=Users)
+def list_users() -> Users:
+    return fake_db
 
 
 @router.post("/users", status_code=201)
 def create_user(payload: CreateUser) -> None:
-    if payload.name not in [u.name for u in users]:
-        users.append(payload)
+    if payload.name not in [u.name for u in fake_db]:
+        fake_db.append(User(id=random.randomint(2, 100), name=payload.name))
 
 
-@router.get("/users/{id}", status_code=200, response_model=Optional[User])
-def get_user(user_id: int) -> Optional[User]:
-    return next((user for user in users if user.id == user_id), None)
+@router.get("/users/{id}", status_code=200, response_model=MaybeUser)
+def get_user(user_id: int) -> MaybeUser:
+    found = next((u for u in fake_db if u.id == user_id), None)
+    if not found:
+        raise HTTPException(status_code=404, detail="User not found")
+    return found
 
 
-@router.put("/users/{id}", status_code=200, response_model=Optional[User])
-def get_user(user_id: int, payload: UpdateUser) -> Optional[User]:
-    for user in users:
+@router.put("/users/{id}", status_code=200)
+def update_user(user_id: int, payload: UpdateUser) -> None:
+    for user in fake_db:
         if user.id == user_id:
             user.name = payload.name
