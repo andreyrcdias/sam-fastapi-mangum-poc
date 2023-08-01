@@ -34,7 +34,7 @@ def list_users() -> Users:
 @router.post("/users", status_code=201)
 def create_user(payload: CreateUser) -> None:
     if payload.name not in [u.name for u in fake_db]:
-        fake_db.append(User(id=random.randomint(2, 100), name=payload.name))
+        fake_db.append(User(id=random.randint(2, 100), name=payload.name))
 
 
 @router.get("/users/{id}", status_code=200, response_model=MaybeUser)
