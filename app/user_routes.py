@@ -37,7 +37,7 @@ def create_user(payload: CreateUser) -> None:
         fake_db.append(User(id=random.randint(2, 100), name=payload.name))
 
 
-@router.get("/users/{id}", status_code=200, response_model=MaybeUser)
+@router.get("/users/{user_id}", status_code=200, response_model=MaybeUser)
 def get_user(user_id: int) -> MaybeUser:
     found = next((u for u in fake_db if u.id == user_id), None)
     if not found:
@@ -45,7 +45,7 @@ def get_user(user_id: int) -> MaybeUser:
     return found
 
 
-@router.put("/users/{id}", status_code=200)
+@router.put("/users/{user_id}", status_code=200)
 def update_user(user_id: int, payload: UpdateUser) -> None:
     for user in fake_db:
         if user.id == user_id:
